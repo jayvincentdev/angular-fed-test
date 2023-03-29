@@ -1,5 +1,14 @@
+<spinner *ngIf="loading"></spinner>
+
+<alert
+  *ngIf="error"
+  type="error"
+>
+  {{ error }}
+</alert>
+
 <ul class="PropertyListing">
-  <li *ngFor="let property of properties">
+  <li *ngFor="let property of properties$ | async">
     <app-property-card [property]="property"></app-property-card>
   </li>
 </ul>
