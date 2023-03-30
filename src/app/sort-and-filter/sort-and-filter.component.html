@@ -1,3 +1,33 @@
 <div class="SortAndFilter">
-<!--      TODO: add filters here...-->
+  <div>
+    <app-dropdown
+      label="Min price:"
+      [options]="priceOptions"
+      (onChange)="onChange('minPrice', $event)"
+    ></app-dropdown>
+
+    <app-dropdown
+      label="Max price:"
+      [options]="priceOptions"
+      (onChange)="onChange('maxPrice', $event)"
+    ></app-dropdown>
+
+    <app-dropdown
+      label="Min beds:"
+      [options]="bedOptions"
+      (onChange)="onChange('minBeds', $event)"
+    ></app-dropdown>
+
+    <app-dropdown
+      label="Max beds:"
+      [options]="bedOptions"
+      (onChange)="onChange('maxBeds', $event)"
+    ></app-dropdown>
+  </div>
+
+  <app-multiselect
+    label="Property types:"
+    [options]="propertyTypeOptions"
+    (onChange)="onChangeMultiselect($event)"
+  ></app-multiselect>
 </div>

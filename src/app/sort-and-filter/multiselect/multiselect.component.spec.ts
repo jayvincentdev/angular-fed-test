@@ -23,7 +23,7 @@ describe('MultiselectComponent', () => {
       'Detached',
       'Terraced',
     ];
-    component.onChange = changeFunction;
+    component.onChange.emit = changeFunction;
     fixture.detectChanges();
   });
 
@@ -50,7 +50,7 @@ describe('MultiselectComponent', () => {
     inputs[2].nativeElement.checked = true;
     inputs[2].nativeElement.dispatchEvent(new Event('change'));
     fixture.detectChanges()
-    expect(component.onChange).toHaveBeenCalledWith(['detached']);
+    expect(component.onChange.emit).toHaveBeenCalledWith(['detached']);
     expect(component.selectedOptions).toEqual({ detached: true });
   });
 
@@ -61,7 +61,7 @@ describe('MultiselectComponent', () => {
     inputs[0].nativeElement.checked = true;
     inputs[0].nativeElement.dispatchEvent(new Event('change'));
     fixture.detectChanges()
-    expect(component.onChange).toHaveBeenCalledWith(['detached', 'flat']);
+    expect(component.onChange.emit).toHaveBeenCalledWith(['detached', 'flat']);
     expect(component.selectedOptions).toEqual({ detached: true, flat: true });
   });
 
@@ -74,7 +74,7 @@ describe('MultiselectComponent', () => {
     inputs[2].nativeElement.checked = false;
     inputs[2].nativeElement.dispatchEvent(new Event('change'));
     fixture.detectChanges()
-    expect(component.onChange).toHaveBeenCalledWith(['flat']);
+    expect(component.onChange.emit).toHaveBeenCalledWith(['flat']);
     expect(component.selectedOptions).toEqual({ detached: false, flat: true });
   });
 });

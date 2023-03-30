@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-dropdown',
@@ -8,12 +8,12 @@ import { Component, Input } from '@angular/core';
 export class DropdownComponent {
   @Input() label?: string;
   @Input() options: string[] = [];
-  @Input() onChange?: (value: string) => void;
+  @Output() onChange = new EventEmitter<string>();
 
   handleChange(e: Event) {
     const value = (e.target as HTMLSelectElement).value;
     if (this.onChange) {
-      this.onChange(value);
+      this.onChange.emit(value);
     }
   }
 }

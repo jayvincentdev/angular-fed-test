@@ -1,5 +1,5 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { catchError, Observable, of, tap } from 'rxjs';
+import { AfterViewInit, Component, OnDestroy } from '@angular/core';
+import { catchError, Observable, of, Subject, takeUntil, tap } from 'rxjs';
 import { Property } from '../../types';
 
 import { PropertyService } from '../property-service/property.service';
@@ -9,10 +9,12 @@ import { PropertyService } from '../property-service/property.service';
   templateUrl: './property-listing.component.html',
   styleUrls: ['./property-listing.component.scss']
 })
-export class PropertyListingComponent implements AfterViewInit {
+export class PropertyListingComponent implements AfterViewInit, OnDestroy {
   properties$!: Observable<Property[] | null>;
   error: string | null = null;
   loading = true;
+
+  private destroy$ = new Subject<void>();
 
   constructor(
     private propertyService: PropertyService
@@ -29,7 +31,12 @@ export class PropertyListingComponent implements AfterViewInit {
         tap((properties) => {
           this.loading = false;
           if (properties) this.error = null;
-        })
+        }),
+        takeUntil(this.destroy$)
       );
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
   }
 }

@@ -10,6 +10,7 @@ import { DropdownComponent } from './sort-and-filter/dropdown/dropdown.component
 import { MultiselectComponent } from './sort-and-filter/multiselect/multiselect.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { AlertComponent } from './alert/alert.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,9 @@ import { AlertComponent } from './alert/alert.component';
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

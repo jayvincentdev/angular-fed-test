@@ -2,6 +2,7 @@
   <label>
     {{label}}
     <select (change)="handleChange($event)">
+      <option value=""></option>
       <option *ngFor="let option of options" value="{{option}}">
         {{option}}
       </option>

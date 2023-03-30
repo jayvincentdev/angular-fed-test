@@ -11,3 +11,11 @@ export interface Property {
   propertyTitle: string;
   mainImage: string;
 }
+
+export interface PropertyFilters {
+  minPrice: string;
+  maxPrice: string;
+  minBeds: string;
+  maxBeds: string;
+  propertyTypes: string[];
+}
